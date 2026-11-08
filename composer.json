@@ -54,7 +54,7 @@
         ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "@php artisan dev"
+            "npx concurrently --kill-others --names=laravel,vite \"php artisan serve\" \"npm run dev\""
         ],
         "lint": [
             "pint --parallel"
