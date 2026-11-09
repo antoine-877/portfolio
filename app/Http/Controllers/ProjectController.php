@@ -24,8 +24,6 @@ class ProjectController extends Controller
                 'tags' => $project->tags->pluck('name'),
             ]);
 
-        dd(Project::count(), $projects);
-
         return Inertia::render('projects/Index', [
             'projects' => $projects,
         ]);
