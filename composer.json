@@ -21,6 +21,7 @@
         "barryvdh/laravel-ide-helper": "^3.8",
         "fakerphp/faker": "^1.24",
         "larastan/larastan": "^3.9",
+        "laravel-lang/common": "^6.9",
         "laravel/boost": "^2.2",
         "laravel/pail": "^1.2.5",
         "laravel/pao": "^1.0.6",

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from '@lucide/vue';
-import AppLogo from '@/components/AppLogo.vue';
-import NavFooter from '@/components/NavFooter.vue';
-import NavMain from '@/components/NavMain.vue';
-import NavUser from '@/components/NavUser.vue';
+import { Link } from "@inertiajs/vue3";
+import { BookOpen, FolderGit2, FolderKanban, LayoutGrid } from "@lucide/vue";
+import AppLogo from "@/components/AppLogo.vue";
+import NavFooter from "@/components/NavFooter.vue";
+import NavMain from "@/components/NavMain.vue";
+import NavUser from "@/components/NavUser.vue";
 import {
     Sidebar,
     SidebarContent,
@@ -13,27 +13,34 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
-import type { NavItem } from '@/types';
+} from "@/components/ui/sidebar";
+import { dashboard } from "@/routes";
+import type { NavItem } from "@/types";
+import { index as adminProjectsIndex } from "@/routes/admin/projects";
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
+        title: "Dashboard",
         href: dashboard(),
         icon: LayoutGrid,
+    },
+
+    {
+        title: "Projets",
+        href: adminProjectsIndex(),
+        icon: FolderKanban,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
+        title: "Repository",
+        href: "https://github.com/laravel/vue-starter-kit",
         icon: FolderGit2,
     },
     {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
+        title: "Documentation",
+        href: "https://laravel.com/docs/starter-kits#vue",
         icon: BookOpen,
     },
 ];
@@ -64,3 +71,4 @@ const footerNavItems: NavItem[] = [
     </Sidebar>
     <slot />
 </template>
+>

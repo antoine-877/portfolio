@@ -24,9 +24,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
+
+    public function boot(): void{
         $this->configureDefaults();
+
+        Route::resourceVerbs([
+            'create' => 'nouveau',
+            'edit' => 'modifier',
+        ]);
 
         Inertia::handleExceptionsUsing(function (ExceptionResponse $response) {
             if (in_array($response->statusCode(), [403, 404])) {

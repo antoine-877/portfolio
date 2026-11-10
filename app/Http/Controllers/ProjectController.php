@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
