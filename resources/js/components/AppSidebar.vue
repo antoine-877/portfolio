@@ -26,7 +26,7 @@ const mainNavItems: NavItem[] = [
     },
 
     {
-        title: "Projets",
+        title: "project",
         href: adminProjectsIndex(),
         icon: FolderKanban,
     },

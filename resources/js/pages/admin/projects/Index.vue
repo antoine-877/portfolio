@@ -22,10 +22,12 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { create, edit, index } from "@/routes/admin/projects";
+import { Badge } from "@/components/ui/badge";
+import { ArrowDown, ArrowUp } from "@lucide/vue";
 
 defineOptions({
     layout: {
-        breadcrumbs: [{ title: "Projets", href: index() }],
+        breadcrumbs: [{ title: "project", href: index() }],
     },
 });
 
@@ -35,11 +37,11 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Projets" />
+    <Head title="project" />
 
     <div class="space-y-4 p-4">
         <div class="flex items-center justify-between">
-            <h1 class="text-xl font-semibold">Projets</h1>
+            <h1 class="text-xl font-semibold">project</h1>
             <Button as-child>
                 <Link :href="create()">Nouveau projet</Link>
             </Button>
@@ -48,17 +50,52 @@ defineProps({
         <Table>
             <TableHeader>
                 <TableRow>
+                    <TableHead>#</TableHead>
                     <TableHead>Titre</TableHead>
                     <TableHead>Adresse</TableHead>
+                    <TableHead>État</TableHead>
                     <TableHead>Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow v-for="project in projects" :key="project.id">
+                <TableRow
+                    v-for="(project, position) in projects"
+                    :key="project.id"
+                >
+                    <TableCell class="flex gap-1">
+                        <Form v-bind="ProjectController.moveUp.form(project)">
+                            <Button
+                                type="submit"
+                                variant="ghost"
+                                size="icon-sm"
+                                aria-label="Monter"
+                                :disabled="position === 0"
+                            >
+                                <ArrowUp />
+                            </Button>
+                        </Form>
+                        <Form v-bind="ProjectController.moveDown.form(project)">
+                            <Button
+                                type="submit"
+                                variant="ghost"
+                                size="icon-sm"
+                                aria-label="Descendre"
+                                :disabled="position === projects.length - 1"
+                            >
+                                <ArrowDown />
+                            </Button>
+                        </Form>
+                    </TableCell>
+
                     <TableCell class="font-medium">{{
                         project.title
                     }}</TableCell>
-                    <TableCell>/projets/{{ project.slug }}</TableCell>
+                    <TableCell>/project/{{ project.slug }}</TableCell>
+                    <TableCell>
+                        <Badge v-if="project.published_at">Publié</Badge>
+                        <Badge v-else variant="secondary">Brouillon</Badge>
+                    </TableCell>
+
                     <TableCell>
                         <div class="flex items-center gap-2">
                             <!-- Modification -->
@@ -67,6 +104,29 @@ defineProps({
                                     Modifier
                                 </Link>
                             </Button>
+
+                            <!-- Publication -->
+
+                            <Form
+                                v-bind="
+                                    ProjectController.togglePublished.form(
+                                        project,
+                                    )
+                                "
+                                class="inline"
+                            >
+                                <Button
+                                    type="submit"
+                                    variant="outline"
+                                    size="sm"
+                                >
+                                    {{
+                                        project.published_at
+                                            ? "Dépublier"
+                                            : "Publier"
+                                    }}
+                                </Button>
+                            </Form>
 
                             <!-- Suppression -->
                             <Dialog>

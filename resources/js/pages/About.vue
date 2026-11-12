@@ -129,16 +129,16 @@ import { Head } from "@inertiajs/vue3";
 
             <p>
                 Je continue à développer mes compétences et à découvrir de
-                nouvelles technologies au fil de mes projets.
+                nouvelles technologies au fil de mes project.
             </p>
         </section>
 
-        <!-- Projets -->
-        <section id="projets" aria-labelledby="projets-title">
-            <h2 id="projets-title">Mes projets</h2>
+        <!-- project -->
+        <section id="project" aria-labelledby="project-title">
+            <h2 id="project-title">Mes project</h2>
 
             <p>
-                J'ai déjà eu l'occasion de travailler sur différents projets,
+                J'ai déjà eu l'occasion de travailler sur différents project,
                 principalement dans le cadre de ma formation.
             </p>
 

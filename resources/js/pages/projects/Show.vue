@@ -21,7 +21,7 @@ defineProps({
             </li>
         </ul>
 
-        <div v-html="project.content"></div>
+        <div class="prose dark:prose-invert" v-html="project.content"></div>
 
         <a v-if="project.demo_url" :href="project.demo_url">
             Démo

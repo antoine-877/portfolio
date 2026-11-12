@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
-
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -30,6 +29,18 @@ Route::middleware(['auth', 'verified'])
             ->except('show')
             ->names('projects')
             ->parameters(['projets' => 'project']);
+
+        Route::patch('projets/{project}/publication', [AdminProjectController::class, 'togglePublished'])
+            ->name('projects.toggle-published');
+
+
+        Route::patch('projets/{project}/monter', [AdminProjectController::class, 'moveUp'])
+            ->name('projects.move-up');
+        Route::patch('projets/{project}/descendre', [AdminProjectController::class, 'moveDown'])
+            ->name('projects.move-down');
     });
+
+
+
 
 require __DIR__ . '/settings.php';

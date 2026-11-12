@@ -26,6 +26,7 @@ class ProjectRequest extends FormRequest
             'content' => ['nullable', 'string'],
             'demo_url' => ['nullable', 'url', 'max:255'],
             'repo_url' => ['nullable', 'url', 'max:255'],
+            'cover' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'], //2048 Ko//
             'tags' => ['array'],
             'tags.*' => ['integer', 'exists:tags,id'],
         ];
@@ -42,6 +43,7 @@ class ProjectRequest extends FormRequest
             'summary' => 'résumé',
             'demo_url' => 'lien de la démo',
             'repo_url' => 'lien du code',
+            'cover' => 'image de couverture',
         ];
     }
 }
